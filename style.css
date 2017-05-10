@@ -11,6 +11,7 @@ section {
 }
 .activity {
     background-color: #f0f0f0;
+    background-size: 100%;
 }
 .food {
     background-color: #0000ff;
