@@ -6,13 +6,53 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <section id="opening-page">
-
+    <section id="opening-page" class="col-lg-offset-3 col-lg-6">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <p class="navbar-text">Title</p>
+                </div>
+            </div>
+        </nav>
+        <form>
+            <div class="form-group">
+                <label for="city-input">Email address</label>
+                <input type="text" class="form-control" id="city-input" aria-describedby="city" placeholder="Enter city">
+            </div>
+            <div class="form-group">
+                <label for="date-input">Date</label>
+                <input type="date" class="form-control" id="date-input" placeholder="Enter Date">
+                <small id="date-help" class="form-text text-muted">Please select the date that you would like to take your trip.</small>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
     </section>
-    <section id="main-page">
+    <section id="main-page" class="container col-md-offset-3 col-md-6">
+        <div class="page-top">
+            <div id="map" class="col-md-8">
+                MAP
+            </div>
+            <div id="weather" class="col-md-4">
+                WEATHER
+            </div>
+        </div>
+        <div id="">
+            <div id="morning" class="">
+                <div class="activity col-md-6">ACTIVITY</div>
+                <div class="food col-md-6">FOOD</div>
+            </div>
+            <div id="afternoon">
+                <div class="activity col-md-6">ACTIVITY</div>
+                <div class="food col-md-6">FOOD</div>
+            </div>
+            <div id="evening">
+                <div class="activity col-md-6">ACTIVITY</div>
+                <div class="food col-md-6">FOOD</div>
+            </div>
+        </div>
 
     </section>
 </body>
