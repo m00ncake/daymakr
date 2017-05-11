@@ -32,7 +32,7 @@ $(document).ready(function() {
                 console.log('url wrong');
             }
 
-        })
+        });
         locations = [
             {title: global_result[0].name, location: {lat: global_result[0].coordinates.latitude, lng: global_result[0].coordinates.longitude}},
             {title: global_result[1].name, location: {lat: global_result[1].coordinates.latitude, lng: global_result[1].coordinates.longitude}},

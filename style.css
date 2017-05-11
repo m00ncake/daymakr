@@ -1,5 +1,5 @@
 body {
-    background-image: url("images/city_background_06.jpg");
+    background-image: url("images/city_background_03.jpg");
     background-size: 100%;
 }
 section {
@@ -26,7 +26,7 @@ section {
     margin-bottom: 0.3vh;
 }
 #weather {
-    background-image: url("images/weather_background_02.jpg");
+    background-image: url("images/weather_Clear_Sky_01.jpg");
     background-size: 100%;
     height: 34vh;
     /*margin: 0 0.3vw;*/
