@@ -10,11 +10,14 @@
 var global_result;
 var food_result;
 var locations =[];
-$(document).ready(function() {
 
+$(document).ready(function() {
+    $("#main-page").hide(500);
 
     $('.submit').click(function () {
         console.log('click initiated');
+        $("#opening-page").hide(1000);
+        $("#main-page").show(1100);
         $.ajax({
             method:'get',
             dataType: 'json',
@@ -42,11 +45,30 @@ $(document).ready(function() {
         initMap();
     });
 
+    $('.submit').click(function () {
+        console.log('click initiated');
+        $.ajax({
+            method:'get',
+            dataType: 'json',
+            url: 'sampleDataThree.json',
+            success: function (response) {
+                food_result = response;
+                console.log('it worked');
+                displayFoodList();
+
+            },
+            error:function(response){
+                console.log('url wrong');
+            }
+
+        })
+    });
+
     $.ajax({
         dataType: "json",
         data:{
             APPID: '52ea1802f2e0fd3ef3a1708f1b6f52b6',
-            q: 'new york'
+            q: 'taipei'
         },
         url: "http://api.openweathermap.org/data/2.5/weather",
         method: "get",
@@ -212,7 +234,7 @@ function displayAcvtivtyList(){
         var name = global_result[i].name;
         var address = global_result[i].location.address1;
         console.log(address);
-        $(".activity" + i).append(address +'<br>'+name);
+        $(".description" + i).append(address +'<br>'+name);
         // var newText = oldText + address +'<br>'+name
         // $(".activity").text(newText);
     }
@@ -221,7 +243,21 @@ function getFoodList(){
 
 }
 function displayFoodList(){
-
+    for(var p = 0; p < 3; p++){
+        var name = food_result[p].name;
+        var address = food_result[p].location.address1;
+        var phone = food_result[p].display_phone;
+        var price = food_result[p].price;
+        var rating = food_result[p].rating;
+        var reviewCount = food_result[p].review_count;
+        var type = food_result[p].categories[0].title;
+        var picture = food_result[p].image_url;
+        var infoDiv = $('<div>',{
+            html: name + '<br>' + price + " " + rating + '<br>' + type + '<br>' + '<br>' + address + '<br>' + phone
+        });
+        $('.food'+p).css("background-image","url(" + picture + ")");
+        $('.food-info' + p).append(infoDiv);
+    }
 }
 
 function updateWeather(city, weather, icon) {
