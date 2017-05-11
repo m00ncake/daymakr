@@ -16,7 +16,7 @@ $(document).ready(function() {
         $.ajax({
             method:'get',
             dataType: 'json',
-            url: 'sampleData.json',
+            url: 'sampleDataTwo.json',
             success: function (response) {
                 global_result = response;
                 console.log('it worked');
