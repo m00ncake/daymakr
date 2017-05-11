@@ -33,7 +33,7 @@ $GRANT_TYPE = "client_credentials";
 //$DEFAULT_LOCATION = $_GET['location'];
 //$SEARCH_LIMIT = empty($_GET['limit']) ? 3 : $_GET['limit'];
 
-$DEFAULT_TERM = 'Things to do';
+$DEFAULT_TERM = 'Food';
 $DEFAULT_LOCATION = 'Los Angeles, CA';
 $SEARCH_LIMIT = 10;
 /**
