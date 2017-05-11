@@ -234,7 +234,8 @@ function displayAcvtivtyList(){
         var name = global_result[i].name;
         var address = global_result[i].location.address1;
         console.log(address);
-        $(".description" + i).append(address +'<br>'+name);
+        // $(".description" + i).append(name +'<br>'+ address);
+        $(".description" + i).html('<b>' + name + '</b>' +'<br>'+ address);
         // var newText = oldText + address +'<br>'+name
         // $(".activity").text(newText);
     }
@@ -243,20 +244,20 @@ function getFoodList(){
 
 }
 function displayFoodList(){
-    for(var p = 0; p < 3; p++){
+    for(var t = 0; t < 3; t++){
+        var p = Math.floor(Math.random() * food_result.length);
         var name = food_result[p].name;
         var address = food_result[p].location.address1;
         var phone = food_result[p].display_phone;
         var price = food_result[p].price;
         var rating = food_result[p].rating;
-        var reviewCount = food_result[p].review_count;
         var type = food_result[p].categories[0].title;
         var picture = food_result[p].image_url;
         var infoDiv = $('<div>',{
-            html: name + '<br>' + price + " " + rating + '<br>' + type + '<br>' + '<br>' + address + '<br>' + phone
+            html: ('<b>' + name + '</b>' + '<br>' + price + " - " + rating + ' ' + '&#x2605' + '<br>' + type + '<br>' + '<br>' + address + '<br>' + phone)
         });
-        $('.food'+p).css("background-image","url(" + picture + ")");
-        $('.food-info' + p).append(infoDiv);
+        $('.food' + t).css("background-image","url(" + picture + ")");
+        $('.food-info' + t).append(infoDiv);
     }
 }
 

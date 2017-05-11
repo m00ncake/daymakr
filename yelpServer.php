@@ -1,4 +1,3 @@
-
 <?php
 /**
  * Yelp Fusion API code sample.
@@ -35,7 +34,7 @@ $GRANT_TYPE = "client_credentials";
 
 $DEFAULT_TERM = 'Food';
 $DEFAULT_LOCATION = 'Los Angeles, CA';
-$SEARCH_LIMIT = 10;
+$SEARCH_LIMIT = 20;
 /**
  * Given a bearer token, send a GET request to the API.
  *
@@ -164,10 +163,10 @@ function get_business($bearer_token, $business_id) {
 function query_api($term, $location) {
     $bearer_token = obtain_bearer_token();
     $response = json_decode(search($bearer_token, $term, $location));
-    for($i = 0; $i < 10; $i++){
-//        $pretty_response = json_encode($response->businesses[$i], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
-//        print_r($pretty_response);
-    }
+//    for($i = 0; $i < 10; $i++){
+////        $pretty_response = json_encode($response->businesses[$i], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+////        print_r($pretty_response);
+//    }
     $pretty_response = json_encode($response->businesses, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
     print_r($pretty_response);
     $business_id = $response->businesses[0]->id;
@@ -178,9 +177,9 @@ function query_api($term, $location) {
 //        count($response->businesses),
 //        $business_id
 //    );
-
+//
 //    $response = get_business($bearer_token, $business_id);
-
+//
 //    print sprintf("Result for business \"%s\" found:\n", $business_id);
 //    $pretty_response = json_encode(json_decode($response), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
 //    print "$pretty_response\n";
