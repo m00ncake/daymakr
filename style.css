@@ -1,27 +1,37 @@
 body {
-    background-image: url("images/city backgound 01.jpg");
+    background-image: url("images/city_background_04.jpg");
     background-size: 100%;
 }
 section {
-    background-color: darkslategray;
+    background-color: rgba(140, 165, 177, 0.30);
+}
+#opening-page {
+    margin-top: 3vh;
+}
+#submit-btn {
+    margin-bottom: 3vh;
 }
 .activity, .food {
-    height: 22vh;
+    height: 21vh;
     margin: 0.5vh 0;
 }
-.activity {
-    background-color: #f0f0f0;
-    background-size: 100%;
+.activity, .food {
+    background-color: rgba(255, 255, 255, 0.50);
+    margin-top: 0.3vh;
 }
-.food {
-    background-color: #0000ff;
-}
+
 #map {
     background-color: #8e0f0f;
-    height: 35vh;
+    height: 34vh;
+    margin-bottom: 0.3vh;
 }
 #weather {
-    background-image: url("images/weather_background_01.jpg");
+    background-image: url("images/weather_background_02.jpg");
     background-size: 100%;
-    height: 35vh;
+    height: 34vh;
+    /*margin: 0 0.3vw;*/
+}
+.activity0, .activity1, .activity2, .description {
+    height: 21vh;
+    background-size: 100%;
 }
