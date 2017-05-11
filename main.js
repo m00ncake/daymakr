@@ -28,7 +28,14 @@ $(document).ready(function() {
             error:function(response){
                 console.log('url wrong');
             }
-        })
+        });
+
+        /**
+         * set click handler to submit button - AJAX call to Yelp for food data
+         * set response to food_result variable
+         * set locations to location array - call initMap function to create map
+         */
+
         $.ajax({
             method:'get',
             dataType: 'json',
@@ -55,36 +62,33 @@ $(document).ready(function() {
                 console.log('url wrong');
             }
         })
-    });
-    /**
-     * set click handler to submit button - AJAX call to Yelp for food data
-     * set response to food_result variable
-     * set locations to location array - call initMap function to create map
-     */
-
-    /**
-     * AJAX call to weather api to retrieve weather of target location
-     * calls function updateWeather to display data on page
-     */
-    $.ajax({
-        dataType: "json",
-        data:{
-            APPID: '52ea1802f2e0fd3ef3a1708f1b6f52b6',
-            q: 'new york'
-        },
-        url: "http://api.openweathermap.org/data/2.5/weather",
-        method: "get",
-        success: function(response){
-            console.log(response);
-            var cityName = response.name;
-            var cityWeather = response.weather[0].description;
-            var weatherIcon = response.weather[0].icon;
-            console.log(cityName, cityWeather, weatherIcon);
-            updateWeather(cityName, cityWeather, weatherIcon);
-        },
-        error: function(response){
-            console.log("didn't work");
-        }
+        /**
+         * AJAX call to weather api to retrieve weather of target location
+         * calls function updateWeather to display data on page
+         */
+        var citySelected = $("#city-input").val();
+        $.ajax({
+            dataType: "json",
+            data:{
+                APPID: '52ea1802f2e0fd3ef3a1708f1b6f52b6',
+                units: "imperial",
+                q: citySelected
+            },
+            url: "http://api.openweathermap.org/data/2.5/weather",
+            method: "get",
+            success: function(response){
+                console.log(response);
+                var cityName = response.name;
+                var cityWeather = response.weather[0].description;
+                var weatherIcon = response.weather[0].icon;
+                var cityTemp = response.main.temp;
+                console.log(cityName, cityWeather, weatherIcon, cityTemp);
+                updateWeather(cityName, cityWeather, weatherIcon, cityTemp);
+            },
+            error: function(response){
+                console.log("didn't work");
+            }
+        });
     });
 
 });
@@ -262,17 +266,20 @@ function displayFoodList(){
  * @param city
  * @param weather
  * @param icon
+ * @param temp
  */
-function updateWeather(city, weather, icon) {
+function updateWeather(city, weather, icon, temp) {
     var $weather = $("#weather");
-    var $city_name = $("<div>").text(city);
+    var $city_name = $("<div>").css({"font-size":"30px", "color": "white"}).text(city);
     var $city_weather = $("<div>").text(weather);
     var $image = "http://openweathermap.org/img/w/" + icon + ".png";
+    var $city_temp = $("<div>").text(temp);
     console.log($image);
     var $weather_icon = $("<img>").attr("src",$image);
     console.log("weather: ",$city_weather,"city Name: ",$city_name,"weather icon: ", $weather_icon);
-    $weather.append($city_name, $city_weather, $weather_icon);
+    $weather.append($city_name, $city_weather, $weather_icon, $city_temp);
 }
+
 
 // $.ajax({
 //     method:'get',
