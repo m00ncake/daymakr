@@ -8,8 +8,10 @@
 
 
 var global_result;
+var food_result;
+var locations =[];
 $(document).ready(function() {
-    initMap();
+
 
     $('.submit').click(function () {
         console.log('click initiated');
@@ -28,6 +30,16 @@ $(document).ready(function() {
             }
 
         })
+        locations = [
+            {title: global_result[0].name, location: {lat: global_result[0].coordinates.latitude, lng: global_result[0].coordinates.longitude}},
+            {title: global_result[1].name, location: {lat: global_result[1].coordinates.latitude, lng: global_result[1].coordinates.longitude}},
+            {title: global_result[2].name, location: {lat: global_result[2].coordinates.latitude, lng: global_result[2].coordinates.longitude}}
+            // {title: food_result[0].name, location: {lat: food_result[0].coordinates.latitude, lng: food_result[0].coordinates.longitude}},
+            // {title: food_result[1].name, location: {lat: food_result[1].coordinates.latitude, lng: food_result[1].coordinates.longitude}},
+            // {title: food_result[2].name, location: {lat: food_result[2].coordinates.latitude, lng: food_result[2].coordinates.longitude}}
+
+        ];
+        initMap();
     });
 
     $.ajax({
@@ -53,23 +65,108 @@ $(document).ready(function() {
 
 });
 
-
-
     var map;
     var markers = [];
     function initMap() {
+        var styles = [
+            {
+                "featureType": "administrative",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                    {
+                        "color": "#444444"
+                    }
+                ]
+            },
+            {
+                "featureType": "administrative.locality",
+                "elementType": "geometry.fill",
+                "stylers": [
+                    {
+                        "visibility": "on"
+                    },
+                    {
+                        "color": "#f8ac00"
+                    }
+                ]
+            },
+            {
+                "featureType": "landscape",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "color": "#f2f2f2"
+                    }
+                ]
+            },
+            {
+                "featureType": "poi",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            },
+            {
+                "featureType": "road",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "saturation": -100
+                    },
+                    {
+                        "lightness": 45
+                    }
+                ]
+            },
+            {
+                "featureType": "road.highway",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "visibility": "simplified"
+                    }
+                ]
+            },
+            {
+                "featureType": "road.arterial",
+                "elementType": "labels.icon",
+                "stylers": [
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            },
+            {
+                "featureType": "transit",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            },
+            {
+                "featureType": "water",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "color": "#ecc646"
+                    },
+                    {
+                        "visibility": "on"
+                    }
+                ]
+            }
+        ]
         map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: 40.74135, lng: -73.99802},
-            zoom: 13
+            center: {lat: 34.052235, lng: -118.243683},
+            zoom: 13,
+            styles: styles,
+            mapTypeControl: false
         });
-        var locations = [
-            {title: 'Park Ave Penthouse', location: {lat: 40.7713024, lng: -73.9632393}},
-            {title: 'Chelsea Loft', location: {lat: 40.7444883, lng: -73.9949465}},
-            {title: 'Union Square Open Floor Plan', location: {lat: 40.7347062, lng: -73.9895759}},
-            {title: 'East Village Hip Studio', location: {lat: 40.7281777, lng: -73.984377}},
-            {title: 'Tribeca Artsy Pad', location: {lat: 40.7195264, lng: -74.0089934}},
-            {title: 'Chinatown Homey Space', location: {lat: 40.7180628, lng: -73.9961237}}
-        ];
+
         var largeInfowindow = new google.maps.InfoWindow();
         var bounds = new google.maps.LatLngBounds();
         for(var i = 0; i < locations.length; i++){
