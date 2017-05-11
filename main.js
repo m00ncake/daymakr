@@ -1,6 +1,12 @@
 /**
  * Created by JTM on 5/10/17.
  */
+
+
+
+
+
+
 var global_result;
 $(document).ready(function() {
     initMap();
@@ -96,6 +102,7 @@ $(document).ready(function() {
 
 }
 function displayLocation() {
+
 
 }
 function getActivityList(){
