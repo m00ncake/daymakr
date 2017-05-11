@@ -8,6 +8,7 @@
 
 
 var global_result;
+var food_result;
 $(document).ready(function() {
     initMap();
     $("#main-page").hide(500);
@@ -24,6 +25,25 @@ $(document).ready(function() {
                 global_result = response;
                 console.log('it worked');
                 displayAcvtivtyList();
+
+            },
+            error:function(response){
+                console.log('url wrong');
+            }
+
+        })
+    });
+
+    $('.submit').click(function () {
+        console.log('click initiated');
+        $.ajax({
+            method:'get',
+            dataType: 'json',
+            url: 'sampleDataThree.json',
+            success: function (response) {
+                food_result = response;
+                console.log('it worked');
+                displayFoodList();
 
             },
             error:function(response){
@@ -127,7 +147,21 @@ function getFoodList(){
 
 }
 function displayFoodList(){
-
+    for(var p = 0; p < 3; p++){
+        var name = food_result[p].name;
+        var address = food_result[p].location.address1;
+        var phone = food_result[p].display_phone;
+        var price = food_result[p].price;
+        var rating = food_result[p].rating;
+        var reviewCount = food_result[p].review_count;
+        var type = food_result[p].categories[0].title;
+        var picture = food_result[p].image_url;
+        var infoDiv = $('<div>',{
+            html: name + '<br>' + price + " " + rating + '<br>' + type + '<br>' + '<br>' + address + '<br>' + phone
+        });
+        $(infoDiv).css("background-image","url(" + picture + ")");
+        $('.food' + p).append(infoDiv);
+    }
 }
 
 function updateWeather(city, weather, icon) {
