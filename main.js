@@ -28,7 +28,7 @@ $(document).ready(function() {
         dataType: "json",
         data:{
             APPID: '52ea1802f2e0fd3ef3a1708f1b6f52b6',
-            q: 'new york'
+            q: 'taipei'
         },
         url: "http://api.openweathermap.org/data/2.5/weather",
         method: "get",
