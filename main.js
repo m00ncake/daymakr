@@ -15,7 +15,11 @@ $(document).ready(function() {
         $.ajax({
             method:'get',
             dataType: 'json',
-            url: 'sampleDataTwo.json',
+            url: 'yelpServer.php',
+            data: {
+                'location': $('#city-input').val(),
+                'term': 'Things to do'
+            },
             success: function (response) {
                 global_result = response;
                 console.log('it worked');
@@ -24,21 +28,15 @@ $(document).ready(function() {
             error:function(response){
                 console.log('url wrong');
             }
-
-
         })
-    });
-    /**
-     * set click handler to submit button - AJAX call to Yelp for food data
-     * set response to food_result variable
-     * set locations to location array - call initMap function to create map
-     */
-    $('.submit').click(function () {
-        console.log('click initiated');
         $.ajax({
             method:'get',
             dataType: 'json',
-            url: 'sampleDataThree.json',
+            url: 'yelpServer.php',
+            data: {
+                'location': $('#city-input').val(),
+                'term': 'Food'
+            },
             success: function (response) {
                 food_result = response;
                 console.log('it worked');
@@ -56,9 +54,14 @@ $(document).ready(function() {
             error:function(response){
                 console.log('url wrong');
             }
-
         })
     });
+    /**
+     * set click handler to submit button - AJAX call to Yelp for food data
+     * set response to food_result variable
+     * set locations to location array - call initMap function to create map
+     */
+
     /**
      * AJAX call to weather api to retrieve weather of target location
      * calls function updateWeather to display data on page
@@ -270,3 +273,45 @@ function updateWeather(city, weather, icon) {
     console.log("weather: ",$city_weather,"city Name: ",$city_name,"weather icon: ", $weather_icon);
     $weather.append($city_name, $city_weather, $weather_icon);
 }
+
+// $.ajax({
+//     method:'get',
+//     dataType: 'json',
+//     url: 'sampleDataTwo.json',
+//     success: function (response) {
+//         global_result = response;
+//         console.log('it worked');
+//         displayAcvtivtyList();
+//     },
+//     error:function(response){
+//         console.log('url wrong');
+//     }
+//
+// })
+
+// $('.submit').click(function () {
+//     console.log('click initiated');
+//     $.ajax({
+//         method:'get',
+//         dataType: 'json',
+//         url: 'sampleDataThree.json',
+//         success: function (response) {
+//             food_result = response;
+//             console.log('it worked');
+//             displayFoodList();
+//             locations = [
+//                 {title: global_result[0].name, location: {lat: global_result[0].coordinates.latitude, lng: global_result[0].coordinates.longitude}},
+//                 {title: global_result[1].name, location: {lat: global_result[1].coordinates.latitude, lng: global_result[1].coordinates.longitude}},
+//                 {title: global_result[2].name, location: {lat: global_result[2].coordinates.latitude, lng: global_result[2].coordinates.longitude}},
+//                 {title: food_result[0].name, location: {lat: food_result[0].coordinates.latitude, lng: food_result[0].coordinates.longitude}},
+//                 {title: food_result[1].name, location: {lat: food_result[1].coordinates.latitude, lng: food_result[1].coordinates.longitude}},
+//                 {title: food_result[2].name, location: {lat: food_result[2].coordinates.latitude, lng: food_result[2].coordinates.longitude}}
+//             ];
+//             initMap();
+//         },
+//         error:function(response){
+//             console.log('url wrong');
+//         }
+//
+//     })
+// });
