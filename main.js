@@ -16,7 +16,7 @@ $(document).ready(function() {
         $.ajax({
             method:'get',
             dataType: 'json',
-            url: 'sampleData.json',
+            url: 'sampleDataTwo.json',
             success: function (response) {
                 global_result = response;
                 console.log('it worked');
@@ -109,16 +109,16 @@ function getActivityList(){
 
 }
 function displayAcvtivtyList(){
-    for(i=0; i<2; i++){
-        var activity = global_result.businesses[0].image_url;
-        $(".activity").css("background-image","url(" + activity + ")");
-        var name = global_result.businesses[0].id;
-        var address = global_result.businesses[0].location.address1;
+    for(i=0; i<=2; i++){
+        var activity = global_result[i].image_url;
+        $(".activity" + i).css("background-image","url(" + activity + ")");
+        var name = global_result[i].name;
+        var address = global_result[i].location.address1;
         console.log(address);
+        $(".activity" + i).append(address +'<br>'+name);
         // var newText = oldText + address +'<br>'+name
         // $(".activity").text(newText);
     }
-    $(".activity").append(address +'<br>'+name);
 }
 function getFoodList(){
 
