@@ -25,6 +25,7 @@ $(document).ready(function() {
                 console.log('url wrong');
             }
 
+
         })
     });
     /**
@@ -182,14 +183,14 @@ function initMap() {
                 }
             ]
         }
-    ]
+    ];
     map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 34.052235, lng: -118.243683},
         zoom: 13,
         styles: styles
         // mapTypeControl: false
     });
-    google.maps.event.trigger(map,'resize')
+    google.maps.event.trigger(map,'resize');
 
     var largeInfowindow = new google.maps.InfoWindow();
     var bounds = new google.maps.LatLngBounds();
