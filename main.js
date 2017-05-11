@@ -11,9 +11,12 @@ var global_result;
 var food_result;
 $(document).ready(function() {
     initMap();
+    $("#main-page").hide(500);
 
     $('.submit').click(function () {
         console.log('click initiated');
+        $("#opening-page").hide(1000);
+        $("#main-page").show(1100);
         $.ajax({
             method:'get',
             dataType: 'json',
@@ -54,7 +57,7 @@ $(document).ready(function() {
         dataType: "json",
         data:{
             APPID: '52ea1802f2e0fd3ef3a1708f1b6f52b6',
-            q: 'new york'
+            q: 'taipei'
         },
         url: "http://api.openweathermap.org/data/2.5/weather",
         method: "get",
@@ -135,7 +138,7 @@ function displayAcvtivtyList(){
         var name = global_result[i].name;
         var address = global_result[i].location.address1;
         console.log(address);
-        $(".activity" + i).append(address +'<br>'+name);
+        $(".description" + i).append(address +'<br>'+name);
         // var newText = oldText + address +'<br>'+name
         // $(".activity").text(newText);
     }
