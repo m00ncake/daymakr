@@ -1,5 +1,5 @@
 body {
-    background-image: url("images/city_background_06.jpg");
+    background-image: url("images/city_background_05.jpg");
     background-size: 100%;
 }
 section {
@@ -42,4 +42,13 @@ section {
 .food0, .food1, .food2{
     height: 21vh;
     background-size: 100%;
+}
+.navbar-header{
+    width: 100%;
+}
+.navbar-text{
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    margin-top: 2%;
 }

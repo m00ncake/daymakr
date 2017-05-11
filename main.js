@@ -1,12 +1,6 @@
 /**
  * Created by JTM on 5/10/17.
  */
-
-
-
-
-
-
 var global_result;
 var food_result;
 var locations =[];
