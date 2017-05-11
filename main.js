@@ -159,8 +159,8 @@ function displayFoodList(){
         var infoDiv = $('<div>',{
             html: name + '<br>' + price + " " + rating + '<br>' + type + '<br>' + '<br>' + address + '<br>' + phone
         });
-        $(infoDiv).css("background-image","url(" + picture + ")");
-        $('.food' + p).append(infoDiv);
+        $('.food'+p).css("background-image","url(" + picture + ")");
+        $('.food-info' + p).append(infoDiv);
     }
 }
 
