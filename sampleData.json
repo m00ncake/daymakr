@@ -32,8 +32,7 @@
       },
       "distance": 1604.23,
       "transactions": ["pickup", "delivery"]
-    },
-    // ...
+    }
   ],
   "region": {
     "center": {
