@@ -34,7 +34,7 @@ $GRANT_TYPE = "client_credentials";
 
 $DEFAULT_TERM = 'Food';
 $DEFAULT_LOCATION = 'Los Angeles, CA';
-$SEARCH_LIMIT = 20;
+$SEARCH_LIMIT = 30;
 /**
  * Given a bearer token, send a GET request to the API.
  *

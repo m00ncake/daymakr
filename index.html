@@ -13,18 +13,13 @@
     <section id="opening-page" class="col-lg-offset-3 col-lg-6">
         <nav class="navbar navbar-default">
                 <div class="navbar-header">
-                    <p class="navbar-text">Day Makr</p>
+                    <p class="navbar-text">DayMakr</p>
                 </div>
         </nav>
         <form>
             <div class="form-group">
                 <label for="city-input">City</label>
-                <input type="text" class="form-control" id="city-input" aria-describedby="city" placeholder="Enter city">
-            </div>
-            <div class="form-group">
-                <label for="date-input">Date</label>
-                <input type="date" class="form-control" id="date-input" placeholder="Enter Date">
-                <small id="date-help" class="form-text text-muted">Please select the date that you would like to take your trip.</small>
+                <input type="text" class="form-control" id="city-input" aria-describedby="city" placeholder="Enter location - Irvine, CA">
             </div>
             <button type="button" id="submit-btn" class="submit btn btn-primary">Submit</button>
         </form>
@@ -35,8 +30,20 @@
             </div>
             <div id="weather" class="col-md-4">
             </div>
+            <div id="buttonsOnPage" class="col-md-4">
+                <button id="changeCity" class="col-md-2 btn btn-inverse">Change<br>City</button>
+                <button id="newPlans" class="col-md-2 btn btn-inverse">Change<br>Plans</button>
+            </div>
         </div>
         <div id="">
+            <div id="thingsToDo" class="">
+                <div class="col-md-6">
+                    <p>Things to do</p>
+                </div>
+                <div class="col-md-6">
+                    <p>Food & Drink</p>
+                </div>
+            </div>
             <div id="morning" class="">
                 <div class="activity col-md-6">
                     <div class="activity0 col-md-6"></div>
