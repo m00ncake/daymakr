@@ -1,6 +1,7 @@
 var global_result;
 var food_result;
 var locations =[];
+var morePlans = true;
 /**
  * document ready function adding click handler to submit button.
  * Runs AJAX call to retrieve Yelp activity options -- set response to golbal_result variable
@@ -257,6 +258,9 @@ function displayFoodList(){
         $('.food-info' + t).append(infoDiv);
         locations.push({title: food_result[p].name, location: {lat: food_result[p].coordinates.latitude, lng: food_result[p].coordinates.longitude}});
         food_result.splice(p, 1);
+        if(food_result.length === 0){
+            morePlans = false;
+        }
     }
 }
 /**
@@ -281,6 +285,7 @@ function updateWeather(city, weather, icon, temp) {
 }
 
 function changeCity(){
+    morePlans = true;
     global_result;
     food_result;
     locations =[];
@@ -296,6 +301,9 @@ function changeCity(){
 }
 
 function newPlans(){
+    if(morePlans === false){
+        return;
+    }
     map;
     locations =[];
     markers = [];
