@@ -73,7 +73,7 @@ $(document).ready(function() {
                 var cityName = response.name;
                 var cityWeather = response.weather[0].description;
                 var weatherIcon = response.weather[0].icon;
-                var cityTemp = response.main.temp;
+                var cityTemp = Math.floor(response.main.temp);
                 console.log(cityName, cityWeather, weatherIcon, cityTemp);
                 updateWeather(cityName, cityWeather, weatherIcon, cityTemp);
             },
@@ -268,13 +268,21 @@ function displayFoodList(){
 function updateWeather(city, weather, icon, temp) {
     var $weather = $("#weather");
     var $city_name = $("<div>").css({"font-size":"30px", "color": "white"}).text(city);
-    var $city_weather = $("<div>").text(weather);
-    var $image = "http://openweathermap.org/img/w/" + icon + ".png";
-    var $city_temp = $("<div>").text(temp);
+    var $city_weather = $("<div>").css({"color": "grey"}).text(weather);
+    // var $image = "http://openweathermap.org/img/w/" + icon + ".png";
+    var $image = "images/" + icon + ".jpg";
+    $weather.css("background-image", "url(" + $image + ")");
     console.log($image);
+    var $city_temp = $("<div>").css({"font-size":"60px", "color": "white"}).text(temp +"°");
     var $weather_icon = $("<img>").attr("src",$image);
+    // switch(icon) {
+    //     case "01d":
+    //         $("#weather").css("background-image", "url('')")
+    //         break;
+    //     case "":
+    // }
     console.log("weather: ",$city_weather,"city Name: ",$city_name,"weather icon: ", $weather_icon);
-    $weather.append($city_name, $city_weather, $weather_icon, $city_temp);
+    $weather.append($city_name, $city_weather, $city_temp);
 }
 
 
