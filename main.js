@@ -7,6 +7,8 @@ var locations =[];
  */
 $(document).ready(function() {
     $("#main-page").hide(500);
+    $("#changeCity").click(changeCity);
+    $("#newPlans").click(newPlans);
 
     $('.submit').click(function () {
         console.log('click initiated');
@@ -53,7 +55,7 @@ $(document).ready(function() {
             error:function(response){
                 console.log('url wrong');
             }
-        })
+        });
         /**
          * AJAX call to weather api to retrieve weather of target location
          * calls function updateWeather to display data on page
@@ -230,8 +232,9 @@ function displayAcvtivtyList(){
         $(".activity" + i).css("background-image","url(" + activity + ")");
         var name = global_result[e].name;
         var address = global_result[e].location.address1;
+        var type = global_result[e].categories[0].title;
         console.log(address);
-        $(".description" + i).html('<b>' + name + '</b>' +'<br>'+ address);
+        $(".description" + i).html('<b>' + name + '</b>' +'<br>'+ type + '<br>' + address);
         locations.push({title: global_result[e].name, location: {lat: global_result[e].coordinates.latitude, lng: global_result[e].coordinates.longitude}});
         global_result.splice(e, 1);
     }
@@ -283,6 +286,33 @@ function updateWeather(city, weather, icon, temp) {
     // }
     console.log("weather: ",$city_weather,"city Name: ",$city_name,"weather icon: ", $weather_icon);
     $weather.append($city_name, $city_weather, $city_temp);
+}
+
+function changeCity(){
+    global_result;
+    food_result;
+    locations =[];
+    map;
+    markers = [];
+    $("#weather div").remove();
+    $("#weather img").remove();
+    for(var i = 0; i < 3; i++){
+        $('.food-info' + i + ' div').remove();
+    }
+    $("#opening-page").show(1000);
+    $("#main-page").hide(1100);
+}
+
+function newPlans(){
+    map;
+    locations =[];
+    markers = [];
+    for(var i = 0; i < 3; i++){
+        $('.food-info' + i + ' div').remove();
+    }
+    displayAcvtivtyList();
+    displayFoodList();
+    initMap();
 }
 
 
