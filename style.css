@@ -2,6 +2,7 @@ body {
     background-image: url("images/city_background_07.jpg");
     background-size: 100%;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: lighter;
 }
 section {
     background-color: rgba(140, 165, 177, 0.30);
@@ -17,7 +18,7 @@ section {
     margin: 0.5vh 0;
 }
 .activity, .food, #thingsToDo div{
-    background-color: rgba(255, 255, 255, 0.50);
+    background-color: rgba(255, 255, 255, 0.80);
     margin-top: 0.3vh;
 }
 
@@ -31,20 +32,30 @@ section {
     background-image: url("images/weather_Clear_Sky_01.jpg");
     background-size: 100%;
     /*height: 34vh;*/
-    height: 24vh;
+    height: 29vh;
     width: 15.5vw;
     /*margin: 0 0.3vw;*/
     /*TODO: figure out how to make this a relative size with bootstrap but make google maps able to draw itself correctly with an unknown size.  Maybe force google maps to redraw after element load?*/
 }
 #buttonsOnPage{
-    height: 10vh;
+    height: 5vh;
     width: 15.5vw;
+    padding: 0;
 }
 #buttonsOnPage button{
     height: 80%;
     width: 45%;
-    margin: 1vh .6vh;
+    /*margin: 0.3vh 0.3vh;*/
+    padding: 0;
+    margin-left: 3%;
+    margin-top: 2%;
+    background-color: rgba(255, 255, 255, 0.80);
 }
+#buttonsOnPage button:hover {
+    background-color: rgba(230, 230, 230, 0.80);
+
+}
+
 .activity0, .activity1, .activity2, .description {
     height: 19vh;
     background-size: 100%;
@@ -76,4 +87,8 @@ section {
 }
 #thingsToDo div{
     margin-bottom: 0.3vh;
+}
+#morning, #afternoon, #evening {
+    font-size: 2vmin;
+    font-weight: 300;
 }
