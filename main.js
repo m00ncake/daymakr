@@ -9,7 +9,12 @@ $(document).ready(function() {
     $("#main-page").hide(500);
     $("#changeCity").click(changeCity);
     $("#newPlans").click(newPlans);
-
+    /**
+     * set click handler to submit button - AJAX call to Yelp for food data
+     * set response to food_result variable
+     * set locations to location array - call initMap function to create map
+     * set activities
+     */
     $('.submit').click(function () {
         console.log('click initiated');
         $("#opening-page").hide(1000);
@@ -25,37 +30,31 @@ $(document).ready(function() {
             success: function (response) {
                 global_result = response;
                 console.log('it worked');
-                displayAcvtivtyList();
+                $.ajax({
+                    method:'get',
+                    dataType: 'json',
+                    url: 'yelpServer.php',
+                    data: {
+                        'location': $('#city-input').val(),
+                        'term': 'Food'
+                    },
+                    success: function (response) {
+                        food_result = response;
+                        console.log('it worked');
+                        displayFoodList();
+                        displayAcvtivtyList();
+                        initMap();
+                    },
+                    error:function(response){
+                        console.log('url wrong');
+                    }
+                });
             },
             error:function(response){
                 console.log('url wrong');
             }
         });
 
-        /**
-         * set click handler to submit button - AJAX call to Yelp for food data
-         * set response to food_result variable
-         * set locations to location array - call initMap function to create map
-         */
-
-        $.ajax({
-            method:'get',
-            dataType: 'json',
-            url: 'yelpServer.php',
-            data: {
-                'location': $('#city-input').val(),
-                'term': 'Food'
-            },
-            success: function (response) {
-                food_result = response;
-                console.log('it worked');
-                displayFoodList();
-                initMap();
-            },
-            error:function(response){
-                console.log('url wrong');
-            }
-        });
         /**
          * AJAX call to weather api to retrieve weather of target location
          * calls function updateWeather to display data on page
@@ -189,7 +188,6 @@ function initMap() {
         center: {lat: 34.052235, lng: -118.243683},
         zoom: 13,
         styles: styles
-        // mapTypeControl: false
     });
     google.maps.event.trigger(map,'resize');
 
@@ -253,7 +251,7 @@ function displayFoodList(){
         var type = food_result[p].categories[0].title;
         var picture = food_result[p].image_url;
         var infoDiv = $('<div>',{
-            html: ('<b>' + name + '</b>' + '<br>' + price + " - " + rating + ' ' + '&#x2605' + '<br>' + type + '<br>' + '<br>' + address + '<br>' + phone)
+            html: ('<b>' + name + '</b>' + '<br>' + price + " - " + rating + ' ' + '&#x2605' + '<br>' + type + '<br>' + address + '<br>' + phone)
         });
         $('.food' + t).css("background-image","url(" + picture + ")");
         $('.food-info' + t).append(infoDiv);
@@ -271,19 +269,13 @@ function displayFoodList(){
 function updateWeather(city, weather, icon, temp) {
     var $weather = $("#weather");
     var $city_name = $("<div>").css({"font-size":"30px", "color": "white"}).text(city);
-    var $city_weather = $("<div>").css({"color": "grey"}).text(weather);
+    var $city_weather = $("<div>").css({"color": "#f0f1ee", "text-shadow": "#cacaca"}).text(weather);
     // var $image = "http://openweathermap.org/img/w/" + icon + ".png";
     var $image = "images/" + icon + ".jpg";
     $weather.css("background-image", "url(" + $image + ")");
     console.log($image);
     var $city_temp = $("<div>").css({"font-size":"60px", "color": "white"}).text(temp +"°");
     var $weather_icon = $("<img>").attr("src",$image);
-    // switch(icon) {
-    //     case "01d":
-    //         $("#weather").css("background-image", "url('')")
-    //         break;
-    //     case "":
-    // }
     console.log("weather: ",$city_weather,"city Name: ",$city_name,"weather icon: ", $weather_icon);
     $weather.append($city_name, $city_weather, $city_temp);
 }
