@@ -50,6 +50,7 @@ section {
     margin-left: 3%;
     margin-top: 2%;
     background-color: rgba(255, 255, 255, 0.80);
+    font-size: 1.2vmin;
 }
 #buttonsOnPage button:hover {
     background-color: rgba(230, 230, 230, 0.80);
@@ -91,4 +92,7 @@ section {
 #morning, #afternoon, #evening {
     font-size: 2vmin;
     font-weight: 300;
+}
+button:focus {
+    outline:0 !important;
 }
