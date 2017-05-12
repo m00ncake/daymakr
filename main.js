@@ -48,14 +48,6 @@ $(document).ready(function() {
                 food_result = response;
                 console.log('it worked');
                 displayFoodList();
-                locations = [
-                    {title: global_result[0].name, location: {lat: global_result[0].coordinates.latitude, lng: global_result[0].coordinates.longitude}},
-                    {title: global_result[1].name, location: {lat: global_result[1].coordinates.latitude, lng: global_result[1].coordinates.longitude}},
-                    {title: global_result[2].name, location: {lat: global_result[2].coordinates.latitude, lng: global_result[2].coordinates.longitude}},
-                    {title: food_result[0].name, location: {lat: food_result[0].coordinates.latitude, lng: food_result[0].coordinates.longitude}},
-                    {title: food_result[1].name, location: {lat: food_result[1].coordinates.latitude, lng: food_result[1].coordinates.longitude}},
-                    {title: food_result[2].name, location: {lat: food_result[2].coordinates.latitude, lng: food_result[2].coordinates.longitude}}
-                ];
                 initMap();
             },
             error:function(response){
@@ -233,12 +225,15 @@ function initMap() {
  */
 function displayAcvtivtyList(){
     for(i=0; i<=2; i++){
-        var activity = global_result[i].image_url;
+        var e = Math.floor(Math.random() * global_result.length);
+        var activity = global_result[e].image_url;
         $(".activity" + i).css("background-image","url(" + activity + ")");
-        var name = global_result[i].name;
-        var address = global_result[i].location.address1;
+        var name = global_result[e].name;
+        var address = global_result[e].location.address1;
         console.log(address);
         $(".description" + i).html('<b>' + name + '</b>' +'<br>'+ address);
+        locations.push({title: global_result[e].name, location: {lat: global_result[e].coordinates.latitude, lng: global_result[e].coordinates.longitude}});
+        global_result.splice(e, 1);
     }
 }
 /**
@@ -259,6 +254,8 @@ function displayFoodList(){
         });
         $('.food' + t).css("background-image","url(" + picture + ")");
         $('.food-info' + t).append(infoDiv);
+        locations.push({title: food_result[p].name, location: {lat: food_result[p].coordinates.latitude, lng: food_result[p].coordinates.longitude}});
+        food_result.splice(p, 1);
     }
 }
 /**
