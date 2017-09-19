@@ -1,14 +1,26 @@
 body {
     background-image: url("images/city_background_07.jpg");
-    background-size: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: lighter;
+    font-size: 1em;
 }
 section {
     background-color: rgba(140, 165, 177, 0.30);
 }
+
 #opening-page {
     margin-top: 3vh;
+}
+
+@media screen and (max-width: 767px){
+    #opening-page{
+        width: 100%;
+        margin-top: 40vh;
+    }
 }
 #submit-btn {
     margin-bottom: 3vh;
@@ -26,31 +38,37 @@ section {
     background-color: #8e0f0f;
     height: 34vh;
     margin-bottom: 0.3vh;
-    width: 50vw;
+    /*width: 50vw;*/
 }
+@media (max-width:768px){
+
+    #map {
+        height: 29vh;
+    }
+}
+
 #weather {
     background-image: url("images/weather_Clear_Sky_01.jpg");
-    background-size: 100%;
-    /*height: 34vh;*/
+    background-size: cover;
+    background-repeat: no-repeat;
     height: 29vh;
-    width: 15.5vw;
-    /*margin: 0 0.3vw;*/
+    /*width: 15.5vw;*/
     /*TODO: figure out how to make this a relative size with bootstrap but make google maps able to draw itself correctly with an unknown size.  Maybe force google maps to redraw after element load?*/
 }
 #buttonsOnPage{
     height: 5vh;
-    width: 15.5vw;
+    /*width: 15.5vw;*/
     padding: 0;
 }
 #buttonsOnPage button{
     height: 80%;
-    width: 45%;
+    width: 30%;
     /*margin: 0.3vh 0.3vh;*/
     padding: 0;
     margin-left: 3%;
     margin-top: 2%;
     background-color: rgba(255, 255, 255, 0.80);
-    font-size: 1.2vmin;
+    font-size: 1em;
 }
 #buttonsOnPage button:hover {
     background-color: rgba(230, 230, 230, 0.80);
@@ -62,18 +80,21 @@ button:focus {
 
 .activity0, .activity1, .activity2, .description {
     height: 19vh;
-    background-size: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 .food0 div, .food1 div, .food2 div {
     height: 19vh;
-    background-size: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 .food0, .food1, .food2{
     height: 19vh;
-    background-size: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 .page-top{
-    width: 70vw;
+    /*width: 70vw;*/
 }
 .navbar-header{
     width: 100%;
@@ -86,16 +107,86 @@ button:focus {
 }
 #thingsToDo p{
     height: 5vh;
-    font-size: 4vh;
+    font-size: 1.15em;
     text-align: center;
 }
 #thingsToDo div{
     margin-bottom: 0.3vh;
 }
 #morning, #afternoon, #evening {
-    font-size: 2vmin;
+    font-size: 1em;
     font-weight: 300;
 }
 button:focus {
     outline:0 !important;
+}
+#itinerary{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70vw;
+    height: 100vh;
+    background-color: rgba(230, 230, 230, 0.80);
+}
+.food-info0 button, .food-info1 button, .food-info2 button, .description0 button, .description1 button, .description2 button{
+    position: relative;
+    top: 0;
+    right: 0;
+    background-color: white;
+    border: .1em solid green;
+}
+.plans > div{
+    background-color: white;
+    /*margin: 0 auto;*/
+    /*margin-top: 20px;*/
+    /*width: 75%;*/
+    height: 26.6vh;
+}
+#itinerary .name{
+    font-size: 1.4em;
+    left: 0%;
+    text-align: center;
+}
+#itinerary p{
+    position: relative;
+    left: 7%;
+    color: black;
+    font-size: 0.7em;
+}
+#itinerary .btn-success{
+    position: relative;
+    left: 60%;
+    bottom: 20px;
+}
+#itinerary .btn-danger{
+    position: relative;
+    left: 50%;
+    bottom: 20px;
+}
+.hidden{
+    display: none;
+}
+.thingsToDoHeading, .foodAndDrinkHeading{
+    font-size: 1.3em;
+    background-color: rgba(255, 255, 255, 0.80);
+}
+.description0, .description1, .description2, .food-info0, .food-info1, .food-info2{
+    font-size: .9em;
+    font-weight: 300;
+}
+.backgroundImage{
+    background-image: url("green_stripes.png");
+}
+#mapTwo, .foodPlans, .activityPlans{
+    float: right;
+    height: 80vh;
+}
+.itineraryHeading{
+    height: 20vh;
+}
+.foodPlans{
+    display: none;
+}
+.foodPlans, .activityPlans{
+    padding-left: 0;
 }
